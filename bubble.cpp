@@ -116,6 +116,9 @@ int main(int argc, char const *argv[]) {
 
 
 /*
+g++ -fopenmp -o bubble bubble.cpp
+./bubble
+
 Why Parallel Bubble Sort is Slower
 1. Overhead of Thread Management (OpenMP)
 OpenMP creates and manages threads during parallel regions.
