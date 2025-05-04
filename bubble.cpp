@@ -112,3 +112,36 @@ int main(int argc, char const *argv[]) {
     cout << endl;
     return 0;
 }
+
+
+
+/*
+Why Parallel Bubble Sort is Slower
+1. Overhead of Thread Management (OpenMP)
+OpenMP creates and manages threads during parallel regions.
+
+For small to moderate input sizes (up to even 50,000), the overhead of thread creation, synchronization, and context switching outweighs the benefits of parallelism.
+
+2. High Synchronization in Odd-Even Sort
+Each phase (odd and even) depends on the completion of the previous.
+
+This creates a synchronization bottleneck — threads must wait between phases.
+
+3. Memory Bandwidth Contention
+Multiple threads accessing and writing to adjacent memory can lead to cache line conflicts and false sharing.
+
+Bubble sort swaps adjacent elements — this causes frequent write operations close in memory, limiting parallel benefit.
+
+4. Inefficiency of Bubble Sort
+Bubble Sort (and its parallel version) has O(n²) time complexity regardless.
+
+Even with parallelization, it performs too many unnecessary comparisons and swaps.
+
+Faster algorithms (like Merge Sort or Quicksort) show much better speed-up when parallelized.
+
+5. OpenMP Thread Scheduling and CPU Limits
+If your system has 4 or 8 cores, parallelism is capped at that limit.
+
+Beyond a certain point, you gain no performance boost because all CPU cores are already saturated.
+
+*/
